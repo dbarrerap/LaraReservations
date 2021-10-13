@@ -43,7 +43,7 @@ class EventoController extends Controller
      */
     public function show(Request $request)
     {
-        $evento = Evento::findOrFail($request->id);
+        $evento = Evento::with('establecimiento')->findOrFail($request->id);
         return $evento;
     }
 

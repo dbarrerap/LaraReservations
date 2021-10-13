@@ -42,7 +42,7 @@ class EstablecimientoController extends Controller
      */
     public function show(Request $request)
     {
-        $establecimiento = Establecimiento::findOrFail($request->id);
+        $establecimiento = Establecimiento::with('eventos')->findOrFail($request->id);
         
         return $establecimiento;
     }
