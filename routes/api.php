@@ -17,14 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/establecimientos', 'EstablecimientoController@index');
-Route::get('/establecimiento/{id}', 'EstablecimientoController@show');
-Route::post('/establecimientos', 'EstablecimientoController@store');
-Route::put('/establecimiento/{id}', 'EstablecimientoController@update');
-Route::delete('/establecimiento/{id}', 'EstablecimientoController@destroy');
-
-Route::get('/eventos', 'EventoController@index');
-Route::post('/eventos', 'EventoController@store');
-Route::get('/evento/{id}', 'EventoController@show');
-Route::put('/evento/{id}', 'EventoController@update');
-Route::delete('/evento/{id}', 'EventoController@destroy');
+Route::apiResources([
+    'establecimientos' => 'EstablecimientoController',
+    'eventos' => 'EventoController',
+    'proveedores' => 'ProveedorController'
+]);
