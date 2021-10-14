@@ -25,14 +25,8 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        $evento = new Evento();
-
-        $evento->Nombre = $request->Nombre;
-        $evento->Descripcion = $request->Descripcion;
-        $evento->Fecha = $request->Fecha;
-        $evento->establecimiento_id = $request->establecimiento_id;
-
-        $evento->save();
+        $evento = Evento::create($request->all());
+        return response()->json($evento, 201);
     }
 
     /**
@@ -54,17 +48,10 @@ class EventoController extends Controller
      * @param  \App\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Evento $evento)
     {
-        $evento = Evento::findOrFail($request->id);
-
-        $evento->Nombre = $request->Nombre;
-        $evento->Descripcion = $request->Descripcion;
-        $evento->Fecha = $request->Fecha;
-
-        $evento->save();
-
-        return $evento;
+        $evento = Evento::update($request->all());
+        return response()->json($evento, 200);
     }
 
     /**
@@ -73,9 +60,9 @@ class EventoController extends Controller
      * @param  \App\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Evento $evento)
     {
-        $evento = Evento::findOrFail($request->id);
         $evento->delete();
+        return response()->json(null, 204);
     }
 }

@@ -9,6 +9,8 @@ class Proveedor extends Model
     //
     protected $table = 'proveedores';
 
+    protected $fillable = ['Nombre', 'Direccion', 'RUC'];
+
     public function contactos()
     {
         return $this->morphMany('App\Contacto', 'contactable');

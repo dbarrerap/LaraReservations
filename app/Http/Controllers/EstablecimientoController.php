@@ -26,12 +26,8 @@ class EstablecimientoController extends Controller
      */
     public function store(Request $request)
     {
-        $establecimiento = new Establecimiento();
-
-        $establecimiento->Nombre = $request->Nombre;
-        $establecimiento->Direccion = $request->Direccion;
-
-        $establecimiento->save();
+        $establecimiento = Establecimiento::create($request->all());
+        return response()->json($establecimiento, 201);
     }
 
     /**
@@ -54,16 +50,11 @@ class EstablecimientoController extends Controller
      * @param  \App\Establecimiento  $establecimiento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Establecimiento $establecimiento)
     {
-        $establecimiento = Establecimiento::find($request->id);
+        $establecimiento = Establecimiento::update($request->all());
 
-        $establecimiento->Nombre = $request->Nombre;
-        $establecimiento->Direccion = $request->Direccion;
-
-        $establecimiento->save();
-
-        return $establecimiento;
+        return response()->json($establecimiento, 200);
     }
 
     /**
@@ -72,9 +63,9 @@ class EstablecimientoController extends Controller
      * @param  \App\Establecimiento  $establecimiento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Establecimiento $establecimiento)
     {
-        $establecimiento = Establecimiento::find($request->id);
         $establecimiento->delete();
+        return response()->json(null, 204);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Establecimiento extends Model
 {
+    protected $fillable = ['Nombre', 'Direccion'];
     //
     public function eventos()
     {
