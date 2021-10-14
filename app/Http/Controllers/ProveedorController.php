@@ -27,14 +27,8 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
         //
-        $proveedor = new Proveedor();
-
-        $proveedor->Nombre = $request->Nombre;
-        $proveedor->Direccion = $request->Direccion;
-        $proveedor->RUC = $request->RUC;
-        $proveedor->Activo = 1;
-
-        $proveedor->save();
+        $proveedor = Proveedor::create($request->all());
+        return response()->json($proveedor, 201);
     }
 
     /**
@@ -43,10 +37,8 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Proveedor $proveedor)
     {
-        //
-        $proveedor = Proveedor::findOrFail($request->id);
         return $proveedor;
     }
 
@@ -57,19 +49,10 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Proveedor $proveedor)
     {
-        //
-        $proveedor = Proveedor::findOrFail($request->id);
-
-        $proveedor->Nombre = $request->Nombre;
-        $proveedor->Direccion = $request->Direccion;
-        $proveedor->RUC = $request->RUC;
-        $proveedor->Activo = $request->Activo;
-
-        $proveedor->save();
-
-        return $proveedor;
+        $proveedor = Proveedor::update($request->all());
+        return response()->json($proveedor, 200);
     }
 
     /**
@@ -78,10 +61,9 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Proveedor $proveedor)
     {
-        //
-        $proveedor = Proveedor::findOrFail($request->id);
         $proveedor->delete();
+        return response()->json(null, 204);
     }
 }

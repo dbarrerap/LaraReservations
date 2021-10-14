@@ -20,5 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
     'establecimientos' => 'EstablecimientoController',
     'eventos' => 'EventoController',
-    'proveedores' => 'ProveedorController'
+    'proveedores' => 'ProveedorController',
+    'productos' => 'ProductoController'
 ]);
