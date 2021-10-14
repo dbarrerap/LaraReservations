@@ -13,9 +13,10 @@ class CreateProductosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('productos');
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('proveedor_id');
+            $table->unsignedBigInteger('proveedor_id')->nullable();
             $table->string('SKU', 8);
             $table->string('Nombre');
             $table->text('Descripcion');
