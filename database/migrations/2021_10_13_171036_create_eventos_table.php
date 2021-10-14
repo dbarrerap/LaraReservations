@@ -20,7 +20,10 @@ class CreateEventosTable extends Migration
             $table->text('Descripcion');
             $table->dateTime('Fecha');
             $table->timestamps();
-            $table->foreign('establecimiento_id')->references('id')->on('establecimientos');
+
+            $table->foreign('establecimiento_id')
+                ->references('id')->on('establecimientos')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
