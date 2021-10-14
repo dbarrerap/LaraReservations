@@ -13,4 +13,9 @@ class Proveedor extends Model
     {
         return $this->morphMany('App\Contacto', 'contactable');
     }
+
+    public function productos()
+    {
+        return $this->hasMany('App\Producto');
+    }
 }
