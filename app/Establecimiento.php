@@ -11,4 +11,9 @@ class Establecimiento extends Model
     {
         return $this->hasMany('App\Evento');
     }
+
+    public function contactos()
+    {
+        return $this->morphMany('App\Contacto', 'contactable');
+    }
 }
